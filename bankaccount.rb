@@ -1,19 +1,22 @@
 class BankAccount
   @@interest_rate = 1.01
-  @@accounts = Array.new
+  @@accounts = []
 
-  attr_reader :balance
+  attr_accessor :balance
 
 
   def self.create
-    @@accounts << BankAccount.new
+    a = BankAccount.new
+    @@accounts.push(a)
+    return a
+  end
+
+  def self.accounts
     return @@accounts
   end
 
   def initialize
-    random = "Account Number:#{rand(1000000)}"
-    @name = random
-    @balance = 0
+    @balance = 0.0
   end
 
   def deposit(numb)
@@ -34,5 +37,9 @@ class BankAccount
     end
   end
 
-
+  def self.total_funds
+    total = 0
+    @@accounts.each { |acc| total += acc.balance }
+    return total
+  end
 end
