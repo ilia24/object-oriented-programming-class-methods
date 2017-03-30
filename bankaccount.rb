@@ -42,4 +42,11 @@ class BankAccount
     @@accounts.each { |acc| total += acc.balance }
     return total
   end
+
+  def self.interest_time
+    @@accounts.each do |mult|
+      mult.balance = (mult.balance) * @@interest_rate
+    end
+  end
+
 end
