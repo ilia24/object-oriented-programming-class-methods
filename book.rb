@@ -62,14 +62,17 @@ class Book
     else
       self.due = Time.now + 604800
       @@on_loan << self
+      @@on_shelf.delete(self)
       "#{self.name} is now yours until next week, enjoy!"
     end
   end
 #this method allows the user to return a book to the library
   def return_to_library
-    unless @@on_loan.include?(self)
+    if @@on_loan.include?(self)
       self.due = nil
       @@on_shelf << self
+      @@on_loan.delete(self)
+      "#{self.name} has been returned, thanks!"
     end
   end
 end
