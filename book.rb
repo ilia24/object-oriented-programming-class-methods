@@ -48,8 +48,13 @@ class Book
       "#{self.name} is not currently lent out!"
     end
   end
-end
 
+  def self.current_due_date
+    duetime = Time.now + 604800
+    "The current due date for books taken out today is #{duetime.strftime("%A, %B %d at%l:%M %p")}" #7 days
+  end
+
+end
 
 sister_outsider = Book.create("Sister Outsider", "Audre Lorde", "9781515905431")
 aint_i = Book.create("Ain't I a Woman?", "Bell Hooks", "9780896081307")
