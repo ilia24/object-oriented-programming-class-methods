@@ -33,7 +33,7 @@ class Book
 
   def self.borrowed
     @@on_loan.each do |book|
-      puts "- #{book.name} by #{book.author}"
+      return "- #{book.name} by #{book.author}"
     end
   end
 
