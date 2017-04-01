@@ -41,11 +41,13 @@ class Book
   end
 
 
-  # def lent_out?
-  #   if @@on_shelf.include?(self)
-  #     puts "#{self[0]} is currently lent out"
-  #   end
-  # end
+  def lent_out?
+    if @@on_loan.include?(self)
+      "#{self.name} is currently lent out"
+    else
+      "#{self.name} is not currently lent out!"
+    end
+  end
 end
 
 
