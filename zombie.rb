@@ -6,6 +6,8 @@ class Zombie
   @@default_speed= 1
   @@default_strength = 3
 
+  attr_reader :zspeed, :zstrength
+
 #CLASS METHODS
 #This method returns the horde value
   def self.all
@@ -57,6 +59,26 @@ end
       @zstrength = zstrength
     else
       @zstrength = @@default_strength
+    end
+  end
+
+  def outrun_zombie?
+    zombie = self
+    playerspeed = rand(@@max_speed)
+    if playerspeed > self.zspeed
+      true
+    else
+      false
+    end
+  end
+
+  def survive_attack?
+    zombie = self
+    playerstrength = rand(@@max_strength)
+    if playerstrength > self.zstrength
+      true
+    else
+      false
     end
   end
 
