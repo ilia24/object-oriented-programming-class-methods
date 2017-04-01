@@ -18,7 +18,7 @@ class Zombie
   end
 
 #uses @plague_level to gen a random numb and create that many zombies, each zombie is created using the intialize method, with random numbers generated to feed into the init method
-  def self.create
+  def self.spawn
     zombies = rand(@@plague_level)
     zombies.times do
       rspeed = rand(@@max_speed)
@@ -33,6 +33,14 @@ class Zombie
 def self.some_die_off
   ztokill = rand(11)
   ztokill.times {@@horde.delete(@@horde.sample)}
+end
+
+#kills some zombies, spawns some zombies, randomly increases plague level.
+
+def self.new_day
+  self.some_die_off
+  self.spawn
+  self.increase_plague_level
 end
 
 #INSTANCE METHODS
