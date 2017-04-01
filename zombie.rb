@@ -82,6 +82,23 @@ end
     end
   end
 
+  #this method will take the surviveattack, and outrun methods to lead to one of three conlcusions
+
+  def encounter
+    if self.survive_attack? == true && self.outrun_zombie? == true
+      return "You have escaped unscathed"
+    elsif self.survive_attack? == true && self.outrun_zombie? == false
+      return "You try to escape, but become a zombie instead, sucks to be you!"
+      Zombie.spawn
+    elsif self.survive_attack? == false && self.outrun_zombie? == false
+      return "You have died! R.I.P. you!"
+    elsif self.survive_attack? == false && self.outrun_zombie? == true
+      return "You have died! R.I.P. you!"
+    elsif self.survive_attack? == false
+      return "You have died! R.I.P. you!"
+    end
+  end
+
 #DEBUG CODE
 
   def self.print
