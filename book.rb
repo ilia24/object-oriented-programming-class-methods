@@ -6,7 +6,7 @@ class Book
   attr_accessor :due_date, :due
   attr_reader :name, :author
 
-# INSTANCE CREATION
+# This is responsible for creating the instance
   def initialize(name, author, isbn, due = nil)
     @name = name
     @author = author
@@ -20,7 +20,7 @@ class Book
     @@on_shelf << new_book
     new_book
   end
-#ALL BOOK SHELF CHECKS
+#This allows the user to perform various class level checks
   def self.available
     total_books = 0
     puts "Current books available for borrowing:"
@@ -47,7 +47,7 @@ class Book
     puts "You have pulled out: #{randombook.name} by #{randombook.author}"
   end
 
-
+# This performs a quick class check to see if the book is currently lent
   def lent_out?
     if @@on_loan.include?(self)
       "#{self.name} is currently lent out"
@@ -61,6 +61,8 @@ class Book
       "Sorry this book is already lent out!"
     else
       self.due = Time.now + 604800
+      @@on_loan << self
+      "#{self.name} is now yours until next week, enjoy!"
     end
   end
 end
