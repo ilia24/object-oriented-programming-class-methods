@@ -75,10 +75,20 @@ class Book
       "#{self.name} has been returned, thanks!"
     end
   end
+# this method lists all overdue books currently broken
+  def self.overdue
+    puts "Current list of overdue books:"
+    @@on_loan.each do |book|
+      if book.due < Time.now
+        return "-#{book.name}"
+      else
+        "Nothing here, all books are currently within borrowing period!"
+      end
+    end
+  end
 end
 
 sister_outsider = Book.create("Sister Outsider", "Audre Lorde", "9781515905431")
 aint_i = Book.create("Ain't I a Woman?", "Bell Hooks", "9780896081307")
 if_they_come = Book.create("If They Come in the Morning", "Angela Y. Davis", "0893880221")
-jimstale = Book.create("The tales of Jim", "Jim", "2342423")
 jimstale = Book.create("The tales of Jim", "Jim", "2342423")
