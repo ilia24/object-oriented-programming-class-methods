@@ -17,8 +17,22 @@ class Zombie
     @@plague_level += rand(3)
   end
 
-
-
 #INSTANCE METHODS
+
+#this method will initialize a zombie, checking to make sure both var's are within max range (otherwise sets to default)
+  def initialize(zspeed, zstrength)
+    if zspeed <= @@max_speed
+      @zspeed = zspeed
+    else
+      @zspeed = @@default_speed
+    end
+
+    if zstrength <= @@max_strength
+      @zstrength = zstrength
+    else
+      @zstrength = @@default_strength
+    end
+  end
+
 
 end
