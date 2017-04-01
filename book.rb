@@ -3,18 +3,20 @@ class Book
   @@on_loan = []
   @@bookid = 0
 
-  attr_accessor :due_date
+  attr_accessor :due_date, :due
   attr_reader :name, :author
+
 # INSTANCE CREATION
-  def initialize(name, author, isbn)
+  def initialize(name, author, isbn, due = nil)
     @name = name
     @author = author
     @isbn = isbn
     @id = @@bookid += 1
+    @due = due
   end
 
-  def self.create(name, author, isbn)
-    new_book = Book.new(name, author, isbn)
+  def self.create(name, author, isbn, due = nil)
+    new_book = Book.new(name, author, isbn, due = nil)
     @@on_shelf << new_book
     new_book
   end
@@ -35,6 +37,11 @@ class Book
     end
   end
 
+  def self.current_due_date
+    duetime = Time.now + 604800
+    "The current due date for books taken out today is #{duetime.strftime("%A, %B %d at%l:%M %p")}" #7 days
+  end
+
   def self.browse
     randombook = @@on_shelf.sample
     puts "You have pulled out: #{randombook.name} by #{randombook.author}"
@@ -49,11 +56,13 @@ class Book
     end
   end
 
-  def self.current_due_date
-    duetime = Time.now + 604800
-    "The current due date for books taken out today is #{duetime.strftime("%A, %B %d at%l:%M %p")}" #7 days
+  def borrow
+    if @@on_loan.include?(self)
+      "Sorry this book is already lent out!"
+    else
+      self.due = Time.now + 604800
+    end
   end
-
 end
 
 sister_outsider = Book.create("Sister Outsider", "Audre Lorde", "9781515905431")
