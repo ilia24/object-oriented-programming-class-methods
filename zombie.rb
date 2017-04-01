@@ -88,8 +88,8 @@ end
     if self.survive_attack? == true && self.outrun_zombie? == true
       return "You have escaped unscathed"
     elsif self.survive_attack? == true && self.outrun_zombie? == false
-      return "You try to escape, but become a zombie instead, sucks to be you!"
       Zombie.spawn
+      return "You try to escape, but become a zombie instead, sucks to be you!"
     elsif self.survive_attack? == false && self.outrun_zombie? == false
       return "You have died! R.I.P. you!"
     elsif self.survive_attack? == false && self.outrun_zombie? == true
