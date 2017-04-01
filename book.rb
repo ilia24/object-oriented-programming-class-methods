@@ -5,7 +5,7 @@ class Book
 
   attr_accessor :due_date
   attr_reader :name, :author
-
+# INSTANCE CREATION
   def initialize(name, author, isbn)
     @name = name
     @author = author
@@ -18,7 +18,7 @@ class Book
     @@on_shelf << new_book
     new_book
   end
-
+#ALL BOOK SHELF CHECKS
   def self.available
     total_books = 0
     puts "Current books available for borrowing:"
@@ -36,8 +36,10 @@ class Book
   end
 
   def self.browse
-    @@on_shelf.sample
+    randombook = @@on_shelf.sample
+    puts "You have pulled out: #{randombook.name} by #{randombook.author}"
   end
+
 
   # def lent_out?
   #   if @@on_shelf.include?(self)
