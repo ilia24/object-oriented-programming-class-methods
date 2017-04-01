@@ -28,6 +28,13 @@ class Zombie
     end
   end
 
+#generates a random number between 1-10 and kills that many zombies
+
+def self.some_die_off
+  ztokill = rand(11)
+  ztokill.times {@@horde.delete(@@horde.sample)}
+end
+
 #INSTANCE METHODS
 
 #this method will initialize a zombie, checking to make sure both var's are within max range (otherwise sets to default)
@@ -45,5 +52,13 @@ class Zombie
     end
   end
 
+#DEBUG CODE
 
+  def self.print
+    @@horde
+  end
+
+  def self.test
+    @@horde.delete(@@horde.sample)
+  end
 end
