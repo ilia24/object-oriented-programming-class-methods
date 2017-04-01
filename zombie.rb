@@ -17,6 +17,17 @@ class Zombie
     @@plague_level += rand(3)
   end
 
+#uses @plague_level to gen a random numb and create that many zombies, each zombie is created using the intialize method, with random numbers generated to feed into the init method
+  def self.create
+    zombies = rand(@@plague_level)
+    zombies.times do
+      rspeed = rand(@@max_speed)
+      rstrength = rand(@@max_strength)
+      zombie = new(rspeed, rstrength)
+      @@horde << zombie
+    end
+  end
+
 #INSTANCE METHODS
 
 #this method will initialize a zombie, checking to make sure both var's are within max range (otherwise sets to default)
